@@ -12,7 +12,7 @@ class CartSessionHandler
 
     public function get()
     {
-        return $_SESSION['minishop2']['cart'];
+        return $_SESSION['minishop2']['cart'] ?? [];
     }
 
     public function set($cart)
