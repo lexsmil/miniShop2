@@ -19,7 +19,7 @@ class OrderSessionHandler
 
     public function get()
     {
-        return $_SESSION['minishop2']['order'];
+        return $_SESSION['minishop2']['order'] ?? [];
     }
 
     public function add($key, $value = '')
