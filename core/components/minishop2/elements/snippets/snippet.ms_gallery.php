@@ -66,13 +66,13 @@ $default = [
     'return' => 'data',
     'nestedChunkPrefix' => 'minishop2_',
 ];
-if ($scriptProperties['return'] === 'tpl') {
+if (isset($scriptProperties['return']) && $scriptProperties['return'] === 'tpl') {
     unset($scriptProperties['return']);
 }
 // Merge all properties and run!
 $pdoFetch->setConfig(array_merge($default, $scriptProperties), false);
 $rows = $pdoFetch->run();
-if ($scriptProperties['return'] === 'sql' || $scriptProperties['return'] === 'json') {
+if (isset($scriptProperties['return']) && in_array($scriptProperties['return'], ['sql', 'json'], true)) {
     return $rows;
 }
 $pdoFetch->addTime('Fetching thumbnails');
@@ -125,7 +125,7 @@ foreach ($rows as $row) {
     $files[] = $row;
 }
 
-if ($scriptProperties['return'] === 'data') {
+if (isset($scriptProperties['return']) && $scriptProperties['return'] === 'data') {
     return $files;
 }
 
